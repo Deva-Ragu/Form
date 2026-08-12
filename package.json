@@ -1,0 +1,16 @@
+{
+  "name": "form-backend",
+  "version": "1.0.0",
+  "description": "Simple form submission backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "mongoose": "^8.24.3",
+    "nodemailer": "^9.0.5"
+  }
+}

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../project"
+		},
+		{
+			"path": "node_modules"
+		},
+		{
+			"path": "public"
+		}
+	],
+	"settings": {}
+}
