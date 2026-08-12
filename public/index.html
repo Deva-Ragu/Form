@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<title>Contact Form</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 400px; margin: 60px auto; padding: 20px; }
+  input, textarea { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; }
+  button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+  #result { margin-top: 15px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h2>Contact Form</h2>
+
+<form id="myForm">
+  <input type="text" id="name" placeholder="Your Name" required>
+  <input type="email" id="email" placeholder="Your Email" required>
+  <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+  <button type="submit">Submit</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+  // Form submit event ah listen pannurom
+  document.getElementById("myForm").addEventListener("submit", async function (e) {
+    e.preventDefault(); // page reload aagama irukka
+
+    // Form values eduthukurom
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    // Backend ku data anupurom (CONNECT panra place idhu dhaan)
+    const response = await fetch("http://localhost:5000/api/submit-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    const data = await response.json();
+
+    // Result ah screen la kaamikurom
+    if (data.success) {
+      document.getElementById("result").style.color = "green";
+      document.getElementById("result").innerText = "✅ " + data.message;
+      document.getElementById("myForm").reset();
+    } else {
+      document.getElementById("result").style.color = "red";
+      document.getElementById("result").innerText = "❌ " + data.error;
+    }
+  });
+</script>
+
+</body>
+</html>
